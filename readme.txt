@@ -1,4 +1,4 @@
-=== Blog Manager Light ===
+ï»¿=== Blog Manager Light ===
 Contributors: OTWthemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQH6CMTR42KS2
 Tags: manage posts, blog, post list, responsive, blog 1 column, blog 4 columns, blog archive, blog widget style, shortcode, newspapper, timeline, slider, carousel
@@ -16,19 +16,19 @@ Sometimes WordPress themes come with very limited blog options in terms of layou
 
 Blog Manager for WordPress adds tons of blog functionality to your WordPress based website.
 
-Create as many blog post lists as you like. This plugin comes with variety of templates to choose from. Select list content, modify layout and style your list to get the content and the look you want. Place your lists anywhere in your site by using the list’s shortcode or a widget.
+Create as many blog post lists as you like. This plugin comes with variety of templates to choose from. Select list content, modify layout and style your list to get the content and the look you want. Place your lists anywhere in your site by using the list's shortcode or a widget.
 
 **Templates**
 
 * Grid - Blog 1 col
 * Grid - Blog 4 col
 * Image Left -  blog 1 col
-* Widget Style – Image Left
+* Widget Style - Image Left
 * Timeline
 * Slider 
 * Carousel 3 columns
 
-**Select and re-arrange list item’s content**
+**Select and re-arrange list item's content**
 
 For each blog posts list you can choose to show or hide the following content. You can also re-arrange it. It is all drag and drop, easy!
 
