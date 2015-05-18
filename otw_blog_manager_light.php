@@ -4,7 +4,7 @@
  * Plugin URI: http://OTWthemes.com 
  * Description: Blog Manager for WordPress adds tons of blog functionality to your WordPress based website.
  * Author: OTWthemes.com
- * Version: 1.0
+ * Version: 1.1
  * Author URI: http://themeforest.net/user/OTWthemes
  */
 

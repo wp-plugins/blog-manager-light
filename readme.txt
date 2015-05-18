@@ -3,8 +3,8 @@ Contributors: OTWthemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQH6CMTR42KS2
 Tags: manage posts, blog, post list, responsive, blog 1 column, blog 4 columns, blog archive, blog widget style, shortcode, newspapper, timeline, slider, carousel
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 1.0
+Tested up to: 4.2
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,9 @@ Please refer to [online documentation page](http://otwthemes.com/online-document
 
 
 == Changelog ==
+= 1.1 =
+
+* Updated: remove unused code
 
 = 1.0 =
 

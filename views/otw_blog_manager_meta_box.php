@@ -98,13 +98,6 @@
 
 	}
 ?>
-<?php
-// $modal_update_href = esc_url( add_query_arg( array(
-//     'page' => 'shiba_gallery',
-//     '_wpnonce' => wp_create_nonce('shiba_gallery_options'),
-// ), admin_url('upload.php') ) );
-?>
-
 <table class="form-table">
 	<tbody>
 		<!-- Select Drop Down -->
