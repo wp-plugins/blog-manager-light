@@ -1,6 +1,6 @@
 var $ =  jQuery.noConflict(); //Wordpress by default uses jQuery instead of $
 
-$(document).ready(function(){
+jQuery(document).ready(function(){
 
   //Hover styles
   otw_hover_styles();
@@ -12,8 +12,8 @@ $(document).ready(function(){
   otw_responsive_videos();
 
   // Blog image slides
-  $('.otw_blog_manager-format-gallery').each( function( i, v ) {
-    $this = $(this);
+  jQuery('.otw_blog_manager-format-gallery').each( function( i, v ) {
+    $this = jQuery(this);
 
     if( $this.find('.slides').length > 0 ) {
       $this.flexslider({
@@ -25,9 +25,9 @@ $(document).ready(function(){
   });
 
   // Load More Other Items
-  $(document).on('click', '.js-otw_blog_manager-load-more a', function(e) {
+  jQuery(document).on('click', '.js-otw_blog_manager-load-more a', function(e) {
     e.preventDefault();
-    $this = $(this);
+    $this = jQuery(this);
 
     if( !$this.parent().hasClass('otw_blog_manager-load-more-newspapper') ) {
 
@@ -45,13 +45,13 @@ $(document).ready(function(){
       $container = $this.parent().parent().parent().parent().parent().parent().parent().parent().find('.otw_blog_manager-blog-item-holder').parent();
       $mainContainer = $this.parent().parent().parent().parent().parent();
 
-      $.get(url, function(data) {
+      jQuery.get(url, function(data) {
         if( data.length > 1 ) {
-          $pagination = $(data).find('.js-pagination_container').parent().parent();
+          $pagination = jQuery(data).find('.js-pagination_container').parent().parent();
 
-          $('.js-pagination_container').parent().parent().remove();
+          jQuery('.js-pagination_container').parent().parent().remove();
 
-          $newElements = $(data).find('.otw_blog_manager-blog-item-holder');
+          $newElements = jQuery(data).find('.otw_blog_manager-blog-item-holder');
 
           $container.append( $newElements ); 
 
@@ -74,10 +74,10 @@ $(document).ready(function(){
   });
 
   // Load More Widgets
-  $(document).on('click', '.js-widget-otw_blog_manager-load-more a', function(e) {
+  jQuery(document).on('click', '.js-widget-otw_blog_manager-load-more a', function(e) {
 
     e.preventDefault();
-    $this = $(this);
+    $this = jQuery(this);
 
     var url = $this.parent('.js-widget-otw_blog_manager-load-more').parent().find('.otw_blog_manager-pagination.hide a').attr('href');
 
@@ -90,18 +90,18 @@ $(document).ready(function(){
 
     $container = $this.parent().parent().parent().parent().parent().parent().find('.js-widget-list');    
 
-    $.get(url, function(data) {
+    jQuery.get(url, function(data) {
       if( data.length > 1 ) {
-        $pagination = $(data).find('.js-otw_blog_manager-widget-pagination-holder').parent().parent();
+        $pagination = jQuery(data).find('.js-otw_blog_manager-widget-pagination-holder').parent().parent();
 
         // Remove Load More
         $this.parent().parent().remove();
 
         // Add new Load More BTN
-        $('.js-otw_blog_manager-widget-pagination-holder').html( $(data).find('.js-widget-pagination_container') );
+        jQuery('.js-otw_blog_manager-widget-pagination-holder').html( jQuery(data).find('.js-widget-pagination_container') );
 
 
-        $container.append( $(data).find('.js-widget-list').children() );
+        $container.append( jQuery(data).find('.js-widget-list').children() );
         otw_hover_styles();
         otw_responsive_videos();
         otw_social_shares();
@@ -116,11 +116,11 @@ $(document).ready(function(){
   });
  
   //Load More NewsPapper
-  $(document).on("click", '.otw_blog_manager-load-more-newspapper a',function(e){
+  jQuery(document).on("click", '.otw_blog_manager-load-more-newspapper a',function(e){
 
     e.preventDefault();
 
-    $this = $(this);
+    $this = jQuery(this);
 
     var url = $this.attr('href');
 
@@ -129,18 +129,18 @@ $(document).ready(function(){
       return false;
     }
     $this.html('<div class="preloader">Loading posts...</div>');
-    $container = $(this).parent().parent().parent().parent().parent().find('.otw_blog_manager-blog-newspaper')
+    $container = jQuery(this).parent().parent().parent().parent().parent().find('.otw_blog_manager-blog-newspaper')
 
-    $.get(url, function(data) {
+    jQuery.get(url, function(data) {
       if( data.length > 1 ) {
-        var $newElements = $( $(data).find('.otw_blog_manager-blog-item-holder').html() );
+        var $newElements = jQuery( jQuery(data).find('.otw_blog_manager-blog-item-holder').html() );
 
         //slider fixing
         $newElements.find('.otw_blog_manager-blog-media-wrapper.otw_blog_manager-format-gallery').each(function(){
           var image = new Image();
-          image.src = $(this).find('.slides li img').attr("src");
-          $(this).css({'max-width': image.naturalWidth + 'px' });
-          $(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
+          image.src = jQuery(this).find('.slides li img').attr("src");
+          jQuery(this).css({'max-width': image.naturalWidth + 'px' });
+          jQuery(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
         });
 
         if($newElements.find('.otw_blog_manager-format-gallery .slides').length > 0 ) {
@@ -150,12 +150,12 @@ $(document).ready(function(){
           });
         }
 
-        $paginationElement = $(data).find('.js-pagination_container').parent().parent();
+        $paginationElement = jQuery(data).find('.js-pagination_container').parent().parent();
 
         if($this.data('isotope') !== false){
           
           $container.append( $newElements ).isotope( 'appended', $newElements, function(){
-            $(this).isotope('reLayout');
+            jQuery(this).isotope('reLayout');
           });
         } else {
           $newElements.appendTo( $this.parent('.otw_blog_manager-load-more').parent().find('.otw_blog_manager-blog-item-holder') ).each(function(){
@@ -169,7 +169,7 @@ $(document).ready(function(){
         otw_enable_sliders();
 
         //next page
-        $('.js-pagination_container').parent().parent().remove();
+        jQuery('.js-pagination_container').parent().parent().remove();
         $container.parent().append( $paginationElement );
         otw_calculate_columns('.otw_blog_manager-mosaic-layout');
       } else {
@@ -185,7 +185,7 @@ $(document).ready(function(){
   //Infinite Scroll for Grid Layout 
   try {
   
-    $('.otw_blog_manager-infinite-pagination-holder').infinitescroll({
+    jQuery('.otw_blog_manager-infinite-pagination-holder').infinitescroll({
       navSelector  : '.otw_blog_manager-pagination',    // selector for the paged navigation 
       nextSelector : '.otw_blog_manager-pagination a',  // selector for the NEXT link (to page 2)
       itemSelector : '.otw_blog_manager-blog-item-holder',     // selector for all items you'll retrieve
@@ -208,7 +208,7 @@ $(document).ready(function(){
 
   //Infinite Scroll for Newspaper Layout
   try {
-    $('.otw_blog_manager-infinite-scroll').infinitescroll({
+    jQuery('.otw_blog_manager-infinite-scroll').infinitescroll({
       navSelector  : '.otw_blog_manager-pagination',    // selector for the paged navigation 
       nextSelector : '.otw_blog_manager-pagination a',  // selector for the NEXT link (to page 2)
       itemSelector : '.otw_blog_manager-blog-newspaper-item',     // selector for all items you'll retrieve
@@ -220,13 +220,13 @@ $(document).ready(function(){
       },
       //call Isotope as a callback
       function( newElements ) {
-        var $newElements = $(newElements);
+        var $newElements = jQuery(newElements);
         //slider fixing
         $newElements.find('.otw_blog_manager-blog-media-wrapper.otw_blog_manager-format-gallery').each(function(){
           var image = new Image();
-          image.src = $(this).find('.slides li img').attr("src");
-          // $(this).css({'max-width': image.naturalWidth + 'px' });
-          // $(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
+          image.src = jQuery(this).find('.slides li img').attr("src");
+          // jQuery(this).css({'max-width': image.naturalWidth + 'px' });
+          // jQuery(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
         });
 
         if($newElements.find('.otw_blog_manager-format-gallery .slides').length > 0 ) {
@@ -236,13 +236,13 @@ $(document).ready(function(){
           });
         }
 
-        $('.otw_blog_manager-infinite-scroll').isotope( 'appended', $newElements, function(){
+        jQuery('.otw_blog_manager-infinite-scroll').isotope( 'appended', $newElements, function(){
           otw_hover_styles();
           otw_responsive_videos();
           otw_social_shares();
           otw_enable_sliders();
           otw_calculate_columns('.otw_blog_manager-mosaic-layout');
-          $(this).isotope('reLayout');
+          jQuery(this).isotope('reLayout');
           
         });
       }
@@ -253,7 +253,7 @@ $(document).ready(function(){
 
   //Infinite Scroll for Horizontal Layout
   try {
-    $('.otw_blog_manager-horizontal-layout-items-infinite-scroll').infinitescroll({
+    jQuery('.otw_blog_manager-horizontal-layout-items-infinite-scroll').infinitescroll({
       navSelector  : '.otw_blog_manager-pagination',    // selector for the paged navigation 
       nextSelector : '.otw_blog_manager-pagination a',  // selector for the NEXT link (to page 2)
       itemSelector : '.otw_blog_manager-horizontal-item',     // selector for all items you'll retrieve
@@ -266,7 +266,7 @@ $(document).ready(function(){
 
       //call horizontal layout as a callback
       function( newElements ) {
-        $newElements = $(newElements).find('.otw_blog_manager-horizontal-item');
+        $newElements = jQuery(newElements).find('.otw_blog_manager-horizontal-item');
         otw_social_shares();
         otw_enable_sliders();
         horizontal_layout('.otw_blog_manager-horizontal-layout-items');
@@ -278,7 +278,7 @@ $(document).ready(function(){
 
   // Timeline
   try {
-    $('.otw_blog_manager-blog-timeline').infinitescroll({
+    jQuery('.otw_blog_manager-blog-timeline').infinitescroll({
       navSelector  : '.otw_blog_manager-pagination',    // selector for the paged navigation 
       nextSelector : '.otw_blog_manager-pagination a',  // selector for the NEXT link (to page 2)
       itemSelector : '.otw_blog_manager-blog-timeline-item',     // selector for all items you'll retrieve
@@ -290,14 +290,14 @@ $(document).ready(function(){
       },
       //callback
       function( newElements ) {
-        var $newElements = $(newElements);
+        var $newElements = jQuery(newElements);
 
         //slider fixing
         $newElements.find('.otw_blog_manager-blog-media-wrapper.otw_blog_manager-format-gallery').each(function(){
           var image = new Image();
-          image.src = $(this).find('.slides li img').attr("src");
-          // $(this).css({'max-width': image.naturalWidth + 'px' });
-          // $(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
+          image.src = jQuery(this).find('.slides li img').attr("src");
+          // jQuery(this).css({'max-width': image.naturalWidth + 'px' });
+          // jQuery(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
         });
 
         if($newElements.find('.otw_blog_manager-format-gallery .slides').length > 0 ) {
@@ -315,9 +315,9 @@ $(document).ready(function(){
           otw_enable_sliders();
         });
 
-        $('.otw_blog_manager-blog-timeline').append($newElements);
+        jQuery('.otw_blog_manager-blog-timeline').append($newElements);
 
-        $('#infscr-loading').remove().insertAfter( $('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item:last') );
+        jQuery('#infscr-loading').remove().insertAfter( jQuery('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item:last') );
 
         timeline_layout_fixer();
       }
@@ -327,53 +327,53 @@ $(document).ready(function(){
   }
   
   //Comment Form
-  $('.otw_blog_manager-btn-reply').on('click', function() {
-    if (!$(this).hasClass('otw_blog_manager-cancel-reply')) {
+  jQuery('.otw_blog_manager-btn-reply').on('click', function() {
+    if (!jQuery(this).hasClass('otw_blog_manager-cancel-reply')) {
 
-      var comForm = $('.otw_blog_manager-comment-form').clone();
-      $('.otw_blog_manager-comment-form').remove();
+      var comForm = jQuery('.otw_blog_manager-comment-form').clone();
+      jQuery('.otw_blog_manager-comment-form').remove();
 
-      $('.otw_blog_manager-btn-reply').removeClass('otw_blog_manager-cancel-reply').html('<b>reply</b>');
-      $(this).addClass('otw_blog_manager-cancel-reply').html('<b>cancel</b>');
-      $(this).parent().parent().append(comForm);
+      jQuery('.otw_blog_manager-btn-reply').removeClass('otw_blog_manager-cancel-reply').html('<b>reply</b>');
+      jQuery(this).addClass('otw_blog_manager-cancel-reply').html('<b>cancel</b>');
+      jQuery(this).parent().parent().append(comForm);
 
-      $(this).parent().parent().children('.otw_blog_manager-comment-form')
+      jQuery(this).parent().parent().children('.otw_blog_manager-comment-form')
         .focus(function() {
-          $(this).siblings('i').addClass('otw_blog_manager-focused');
+          jQuery(this).siblings('i').addClass('otw_blog_manager-focused');
         })
         .focusout(function() {
-          $(this).siblings('i').removeClass('otw_blog_manager-focused');
+          jQuery(this).siblings('i').removeClass('otw_blog_manager-focused');
         });
     }
   });
 
-  $(document)
+  jQuery(document)
     .on('click', '.otw_blog_manager-cancel-reply', function() {
-      var comForm = $(this).parent().siblings('.otw_blog_manager-comment-form').clone();
-      $(this).parent().siblings('.otw_blog_manager-comment-form').remove();
+      var comForm = jQuery(this).parent().siblings('.otw_blog_manager-comment-form').clone();
+      jQuery(this).parent().siblings('.otw_blog_manager-comment-form').remove();
 
-      $(this).removeClass('otw_blog_manager-cancel-reply').html('<b>reply</b>');
-      $('.otw_blog_manager-single-post').append(comForm);
+      jQuery(this).removeClass('otw_blog_manager-cancel-reply').html('<b>reply</b>');
+      jQuery('.otw_blog_manager-single-post').append(comForm);
     })
     .on('click', '.otw_blog_manager-cancel-reply2', function(event) {
       event.preventDefault();
 
-      var comForm = $(this).parent().parent().clone();
-      $(this).parent().parent().remove();
+      var comForm = jQuery(this).parent().parent().clone();
+      jQuery(this).parent().parent().remove();
 
-      $('.otw_blog_manager-cancel-reply').removeClass('otw_blog_manager-cancel-reply').html('<b>reply</b>');
-      $('.otw_blog_manager-single-post').append(comForm);
+      jQuery('.otw_blog_manager-cancel-reply').removeClass('otw_blog_manager-cancel-reply').html('<b>reply</b>');
+      jQuery('.otw_blog_manager-single-post').append(comForm);
     })
     .on('focus', 'input, textarea', function() {
-      $(this).siblings('i').addClass('otw_blog_manager-focused');
+      jQuery(this).siblings('i').addClass('otw_blog_manager-focused');
     })
     .on('focusout', 'input, textarea', function() {
-      $(this).siblings('i').removeClass('otw_blog_manager-focused');
+      jQuery(this).siblings('i').removeClass('otw_blog_manager-focused');
     });
 
   //Slider
-  $('.otw_blog_manager-slider').each(function(){
-    var $this = $(this);
+  jQuery('.otw_blog_manager-slider').each(function(){
+    var $this = jQuery(this);
   
     var flexNav = true; // Show Navigation
     var flexAuto = true;  // Auto play 
@@ -386,7 +386,7 @@ $(document).ready(function(){
       flexAuto = false;
     }
 
-    var slider_animation = $(this).data('animation');
+    var slider_animation = jQuery(this).data('animation');
 
     if($this.find('.slides').length > 0 ) {
       
@@ -426,51 +426,51 @@ $(document).ready(function(){
     }
     // Hide bullets if paginations is not enabled
     if( $this.data('nav') === 0 ) {
-      $this.find( $('.otw-flex-control-nav') ).hide();
+      $this.find( jQuery('.otw-flex-control-nav') ).hide();
     }
   });
 
   //Timeline Layout
-  $('.otw_blog_manager-blog-timeline.with-heading').before('<div class="otw_blog_manager-blog-timeline-heading"></div>');
+  jQuery('.otw_blog_manager-blog-timeline.with-heading').before('<div class="otw_blog_manager-blog-timeline-heading"></div>');
   timeline_layout_fixer();
 
   /* Input & Textarea Placeholder */
-  $('input[type="text"], textarea').each(function(){
-    $(this).attr({'data-value': $(this).attr('placeholder')});
-    $(this).removeAttr('placeholder');
-    $(this).attr({'value': $(this).attr('data-value')});
+  jQuery('input[type="text"], textarea').each(function(){
+    jQuery(this).attr({'data-value': jQuery(this).attr('placeholder')});
+    jQuery(this).removeAttr('placeholder');
+    jQuery(this).attr({'value': jQuery(this).attr('data-value')});
   });
 
-  $('input[type="text"], textarea').focus(function(){
-    $(this).removeClass('error');
-    if($(this).val().toLowerCase() === $(this).attr('data-value').toLowerCase()){
-      $(this).val('');
+  jQuery('input[type="text"], textarea').focus(function(){
+    jQuery(this).removeClass('error');
+    if(jQuery(this).val().toLowerCase() === jQuery(this).attr('data-value').toLowerCase()){
+      jQuery(this).val('');
     } 
   }).blur( function(){ 
-    if($(this).val() === ''){
-      $(this).val($(this).attr('data-value'));
+    if(jQuery(this).val() === ''){
+      jQuery(this).val(jQuery(this).attr('data-value'));
     }
   });
 
   //IE8 hover fixer
-  $('.hover-style-14-desaturate a, .hover-style-16-orton a').on('mouseenter', function(){
-    $(this).find('.otw_blog_manager-hover-img').css({'opacity': '0'});
+  jQuery('.hover-style-14-desaturate a, .hover-style-16-orton a').on('mouseenter', function(){
+    jQuery(this).find('.otw_blog_manager-hover-img').css({'opacity': '0'});
   }).on('mouseleave', function(){
-    $(this).find('.otw_blog_manager-hover-img').css({'opacity': '1'});
+    jQuery(this).find('.otw_blog_manager-hover-img').css({'opacity': '1'});
   });
 
-  $('.hover-style-15-blur a, .hover-style-17-glow a').on('mouseenter', function(){
-    $(this).find('.otw_blog_manager-hover-img').css({'opacity': '1'});
+  jQuery('.hover-style-15-blur a, .hover-style-17-glow a').on('mouseenter', function(){
+    jQuery(this).find('.otw_blog_manager-hover-img').css({'opacity': '1'});
   }).on('mouseleave', function(){
-    $(this).find('.otw_blog_manager-hover-img').css({'opacity': '0'});
+    jQuery(this).find('.otw_blog_manager-hover-img').css({'opacity': '0'});
   });
 });
 
-var $container = $('.otw_blog_manager-blog-newspaper');
+var $container = jQuery('.otw_blog_manager-blog-newspaper');
 
 //Blog Newspaper Filter
 
-$(window).on('load', function() {
+jQuery(window).on('load', function() {
   // Isotope
   try {
     
@@ -495,13 +495,13 @@ $(window).on('load', function() {
       }
     });
 
-    var $optionSets_filter = $('.option-set.otw_blog_manager-blog-filter'),
+    var $optionSets_filter = jQuery('.option-set.otw_blog_manager-blog-filter'),
         $optionLinks_filter = $optionSets_filter.find('a');
 
     $optionLinks_filter.click(function(e) {
       e.preventDefault();
 
-      var $this = $(this);
+      var $this = jQuery(this);
 
 
       if ($this.hasClass('selected')) {
@@ -512,22 +512,22 @@ $(window).on('load', function() {
       $optionSet.find('.selected').removeClass('selected');
       $this.addClass('selected');
 
-      var selector = $(this).data('filter');
+      var selector = jQuery(this).data('filter');
 
-      $(this).parents('.otw_blog_manager-blog-newspaper-filter').parent().parent().parent().find($container).isotope({filter: selector});
+      jQuery(this).parents('.otw_blog_manager-blog-newspaper-filter').parent().parent().parent().find($container).isotope({filter: selector});
     });
   } catch(err) {
 
   }
 
   //Blog Sorting
-  var $optionSets_sort = $('.option-set.otw_blog_manager-blog-sort'),
+  var $optionSets_sort = jQuery('.option-set.otw_blog_manager-blog-sort'),
       $optionLinks_sort = $optionSets_sort.find('a');
 
   $optionLinks_sort.click(function(e){
     e.preventDefault();
 
-    var $this = $(this);
+    var $this = jQuery(this);
 
     if ($this.hasClass('selected')) {
       return false;
@@ -538,15 +538,15 @@ $(window).on('load', function() {
     $this.addClass('selected');
 
     var value = $this.attr('data-option-value');
-    $(this).parents('.otw_blog_manager-blog-newspaper-sort').parent().parent().parent().find($container).isotope({ sortBy : value });
+    jQuery(this).parents('.otw_blog_manager-blog-newspaper-sort').parent().parent().parent().find($container).isotope({ sortBy : value });
   });
 
   //Slider width fixing
-  $('.otw_blog_manager-blog-media-wrapper.otw_blog_manager-format-gallery.slider').each(function(){
+  jQuery('.otw_blog_manager-blog-media-wrapper.otw_blog_manager-format-gallery.slider').each(function(){
     var image = new Image();
-    image.src = $(this).find('.slides li img').attr("src");
-    $(this).css({'max-width': image.naturalWidth + 'px' });
-    $(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
+    image.src = jQuery(this).find('.slides li img').attr("src");
+    jQuery(this).css({'max-width': image.naturalWidth + 'px' });
+    jQuery(this).find('.slides li').css({'max-width': image.naturalWidth + 'px' });
   });
 
   //horizontal layout
@@ -556,61 +556,61 @@ $(window).on('load', function() {
 //Hover styles
 function otw_hover_styles(){
 
-  $('.hover-style-1-full > a, .hover-style-2-shadowin > a, .hover-style-3-border > a, .hover-style-7-shadowout > a').each(function(){
-    if( $(this).find('span.theHoverBorder').length == 0 ){
-      $(this).append('<span class="theHoverBorder"></span>');
+  jQuery('.hover-style-1-full > a, .hover-style-2-shadowin > a, .hover-style-3-border > a, .hover-style-7-shadowout > a').each(function(){
+    if( jQuery(this).find('span.theHoverBorder').length == 0 ){
+      jQuery(this).append('<span class="theHoverBorder"></span>');
     }
   });
 
-  $('.hover-style-4-slidetop > a, .hover-style-5-slideright > a, .hover-style-8-slidedown > a, .hover-style-9-slideleft > a').each(function(){
-    if( $(this).find('span.theHoverBorder').length == 0 ){
-      var icon = $(this).parents('.otw_blog_manager-blog-media-wrapper').attr('data-icon');
-      $(this).append('<span class="theHoverBorder"><i class="'+ icon +'"></i></span>');
+  jQuery('.hover-style-4-slidetop > a, .hover-style-5-slideright > a, .hover-style-8-slidedown > a, .hover-style-9-slideleft > a').each(function(){
+    if( jQuery(this).find('span.theHoverBorder').length == 0 ){
+      var icon = jQuery(this).parents('.otw_blog_manager-blog-media-wrapper').attr('data-icon');
+      jQuery(this).append('<span class="theHoverBorder"><i class="'+ icon +'"></i></span>');
     }
   });
 
   //Special effects
-  $('img', '.hover-style-14-desaturate').each(function(){
+  jQuery('img', '.hover-style-14-desaturate').each(function(){
     
-    $(this).clone().addClass("otw_blog_manager-hover-img").insertAfter( $(this) ).load(function(){
+    jQuery(this).clone().addClass("otw_blog_manager-hover-img").insertAfter( jQuery(this) ).load(function(){
       Pixastic.process(this, "desaturate");
     });
 
   });
 
-  $('img', '.hover-style-15-blur').each(function(){
-    // if( $(this).parent().hasClass('otw-media-container') )
-    $(this).clone().addClass("otw_blog_manager-hover-img").insertAfter($(this)).load(function(){
+  jQuery('img', '.hover-style-15-blur').each(function(){
+    // if( jQuery(this).parent().hasClass('otw-media-container') )
+    jQuery(this).clone().addClass("otw_blog_manager-hover-img").insertAfter(jQuery(this)).load(function(){
       Pixastic.process(this, "blurfast", {amount: 0.3});
     });
   });
 
-  $('img', '.hover-style-16-orton').each(function(){
-    $(this).clone().addClass("otw_blog_manager-hover-img").insertAfter($(this)).load(function(){
+  jQuery('img', '.hover-style-16-orton').each(function(){
+    jQuery(this).clone().addClass("otw_blog_manager-hover-img").insertAfter(jQuery(this)).load(function(){
       Pixastic.process(this, "blurfast", {amount: 0.05});
     });
   });
 
-  $('img', '.hover-style-17-glow').each(function(){
-    $(this).clone().addClass("otw_blog_manager-hover-img").insertAfter($(this)).load(function(){
+  jQuery('img', '.hover-style-17-glow').each(function(){
+    jQuery(this).clone().addClass("otw_blog_manager-hover-img").insertAfter(jQuery(this)).load(function(){
       Pixastic.process(this, "glow", {amount: 0.3, radius: 0.2});
     });
   });
 
   //IE8 hover fixer
-  $('.hover-style-15-blur a .otw_blog_manager-hover-img, .hover-style-17-glow a .otw_blog_manager-hover-img').css({'opacity': '0'});
-  $('.hover-style-14-desaturate a .otw_blog_manager-hover-img, .hover-style-16-orton a .otw_blog_manager-hover-img').css({'opacity': '1'});
+  jQuery('.hover-style-15-blur a .otw_blog_manager-hover-img, .hover-style-17-glow a .otw_blog_manager-hover-img').css({'opacity': '0'});
+  jQuery('.hover-style-14-desaturate a .otw_blog_manager-hover-img, .hover-style-16-orton a .otw_blog_manager-hover-img').css({'opacity': '1'});
 
   //IE8 frameborder fixer
-  $('.otw_blog_manager-format-video iframe, .otw_blog_manager-format-audio iframe').each(function(){
-    $(this).attr({'frameBorder': 'no'});
+  jQuery('.otw_blog_manager-format-video iframe, .otw_blog_manager-format-audio iframe').each(function(){
+    jQuery(this).attr({'frameBorder': 'no'});
   });
 }
 
 function timeline_layout_fixer(){
-  $('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item').removeClass('odd').removeClass('even');
-  $('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item:nth-child(2n-1)').addClass('odd');
-  $('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item:nth-child(2n)').addClass('even');
+  jQuery('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item').removeClass('odd').removeClass('even');
+  jQuery('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item:nth-child(2n-1)').addClass('odd');
+  jQuery('.otw_blog_manager-blog-timeline .otw_blog_manager-blog-timeline-item:nth-child(2n)').addClass('even');
 }
 
 (function($,sr){
@@ -640,7 +640,7 @@ function timeline_layout_fixer(){
 })(jQuery,'smartresize');
 
 //Window resize event
-$(window).smartresize(function(){  
+jQuery(window).smartresize(function(){  
   try {
     otw_calculate_columns('.otw_blog_manager-mosaic-layout');
   } catch(err) { }
@@ -655,8 +655,8 @@ $(window).smartresize(function(){
 });
 
 function otw_enable_sliders () {
-  $('.otw_blog_manager-format-gallery').each( function( i, v ) {
-    $this = $(this);
+  jQuery('.otw_blog_manager-format-gallery').each( function( i, v ) {
+    $this = jQuery(this);
     
     if( $this.find('.slides').length > 0 ) {
       $this.flexslider({
@@ -671,16 +671,16 @@ function otw_enable_sliders () {
 //Masonry layout
 function otw_calculate_columns(container) {
   
-  $(container).each(function(){
+  jQuery(container).each(function(){
 
-    var $this = $(this),
+    var $this = jQuery(this),
       containerWidth = $this.width(),
       minCol = Math.floor(containerWidth / 12);
       
     if (minCol*3 >= 200) {
-      $('> .otw_blog_manager-iso-item', $this).each(function() {
+      jQuery('> .otw_blog_manager-iso-item', $this).each(function() {
         
-        var $this = $(this);
+        var $this = jQuery(this);
         if ($this.hasClass('otw_blog_manager-1-4')) {
           $this.css('width', minCol*3);
         } else if ($this.hasClass('otw_blog_manager-2-4') || $this.hasClass('otw_blog_manager-1-2')) {
@@ -693,9 +693,9 @@ function otw_calculate_columns(container) {
       });
 
     } else if ( minCol*3 < 200 && minCol*3 > 150) {
-      $('> .otw_blog_manager-iso-item', $this).each(function() {
+      jQuery('> .otw_blog_manager-iso-item', $this).each(function() {
         
-        var $this = $(this);
+        var $this = jQuery(this);
         if ($this.hasClass('otw_blog_manager-1-4')) {
           $this.css('width', minCol*6);
         } else if ($this.hasClass('otw_blog_manager-2-4') || $this.hasClass('otw_blog_manager-1-2')) {
@@ -708,35 +708,35 @@ function otw_calculate_columns(container) {
       });
 
     }  else if ( minCol*3 <= 150) {
-      $('> .otw_blog_manager-iso-item', $this).each(function() {
-        $(this).css('width', minCol*12);
+      jQuery('> .otw_blog_manager-iso-item', $this).each(function() {
+        jQuery(this).css('width', minCol*12);
       });
     }
 
-    $('> .otw_blog_manager-iso-item', $this).each(function() {
+    jQuery('> .otw_blog_manager-iso-item', $this).each(function() {
 
-      if( ($(this).hasClass('otw_blog_manager-1-2') || $(this).hasClass('otw_blog_manager-2-3')) && $(this).hasClass('height1')){
-        $(this).css('height', $(this).outerWidth()/2);
-        // $(this).css('width', '-=1'); // Hack for spacing sincer margin-right: -1px is ignored
-      } else if($(this).hasClass('height2')){
-        $(this).css('height', $(this).outerWidth()*2);
+      if( (jQuery(this).hasClass('otw_blog_manager-1-2') || jQuery(this).hasClass('otw_blog_manager-2-3')) && jQuery(this).hasClass('height1')){
+        jQuery(this).css('height', jQuery(this).outerWidth()/2);
+        // jQuery(this).css('width', '-=1'); // Hack for spacing sincer margin-right: -1px is ignored
+      } else if(jQuery(this).hasClass('height2')){
+        jQuery(this).css('height', jQuery(this).outerWidth()*2);
       } else {
-        $(this).css('height', $(this).outerWidth());
+        jQuery(this).css('height', jQuery(this).outerWidth());
       }
 
-      // console.log ( $(this) );
+      // console.log ( jQuery(this) );
       
-      $imgWidth = $(this).find('.otw_blog_manager-blog-media-wrapper').find('img').width();
-      $imgHeight = $(this).find('.otw_blog_manager-blog-media-wrapper').find('img').height();
-      console.log ( $(this).width(), $(this).height() );
+      $imgWidth = jQuery(this).find('.otw_blog_manager-blog-media-wrapper').find('img').width();
+      $imgHeight = jQuery(this).find('.otw_blog_manager-blog-media-wrapper').find('img').height();
+      console.log ( jQuery(this).width(), jQuery(this).height() );
       console.log ( $imgWidth, $imgHeight );
-      $(this).find('.otw_blog_manager-blog-media-wrapper').css({'width': $(this).width(), 'height': $(this).height() });
+      jQuery(this).find('.otw_blog_manager-blog-media-wrapper').css({'width': jQuery(this).width(), 'height': jQuery(this).height() });
 
-      // if( $imgHeight > $(this).height() ) {
-      //   $heightDif = $imgHeight - $(this).height();
+      // if( $imgHeight > jQuery(this).height() ) {
+      //   $heightDif = $imgHeight - jQuery(this).height();
       //   $negativeMove = $heightDif / 2;
       //   console.log( $negativeMove );
-      //   $(this).find('.otw_blog_manager-blog-media-wrapper').find('img').css({'margin-top': -$negativeMove});
+      //   jQuery(this).find('.otw_blog_manager-blog-media-wrapper').find('img').css({'margin-top': -$negativeMove});
       // }
 
     });
@@ -746,12 +746,12 @@ function otw_calculate_columns(container) {
 
 function horizontal_layout(container){
 
-  $(container).each(function(){
+  jQuery(container).each(function(){
     
-    $(this).css({'opacity': '0'});
+    jQuery(this).css({'opacity': '0'});
 
-    var $this = $(this),
-      container_width = $(document).find('.otw_blog_manager-horizontal-layout-wrapper').width(),
+    var $this = jQuery(this),
+      container_width = jQuery(document).find('.otw_blog_manager-horizontal-layout-wrapper').width(),
       row = 1,
       item_margin = $this.find('.otw_blog_manager-blog-item-holder').data('item-margin'),
       cache_width = 0,
@@ -759,11 +759,11 @@ function horizontal_layout(container){
 
     $this.find('.otw_blog_manager-blog-item-holder').children('.otw_blog_manager-horizontal-item').each(function(){
 
-      if( $(this).attr('data-original-width') === undefined ){
-        var $img = $(this).find('.otw_blog_manager-blog-media-wrapper img');
+      if( jQuery(this).attr('data-original-width') === undefined ){
+        var $img = jQuery(this).find('.otw_blog_manager-blog-media-wrapper img');
 
-        $(this).attr({'data-original-width': $img.attr('width')});
-        $(this).attr({'data-original-height': $img.attr('height')});
+        jQuery(this).attr({'data-original-width': $img.attr('width')});
+        jQuery(this).attr({'data-original-height': $img.attr('height')});
 
         //remove image size
         $img.attr({'width': ''});
@@ -771,18 +771,18 @@ function horizontal_layout(container){
 
       }
 
-      $(this).css({'margin-right': ''});
+      jQuery(this).css({'margin-right': ''});
 
-      cache_width += ( $(this).data('original-width') + item_margin );
+      cache_width += ( jQuery(this).data('original-width') + item_margin );
 
 
-      $(this).attr({'data-row': row});
+      jQuery(this).attr({'data-row': row});
 
       if( cache_width >= container_width ){
         //new height = original height / original width x new width
-        height_items.push( Math.floor($(this).data('original-height') / (cache_width - item_margin ) * container_width) );
+        height_items.push( Math.floor(jQuery(this).data('original-height') / (cache_width - item_margin ) * container_width) );
 
-        $(this).css({'margin-right': '-5px'});
+        jQuery(this).css({'margin-right': '-5px'});
 
         cache_width = 0;
         row += 1;
@@ -794,7 +794,7 @@ function horizontal_layout(container){
       cache_width = 0;
       $this.find('.otw_blog_manager-blog-item-holder').children('.otw_blog_manager-horizontal-item[data-row="'+ (i + 1) +'"]').each(function($itemIndex){
         //new width = original wdith / original height x new height
-        var new_width = Math.ceil( $(this).data('original-width') / $(this).data('original-height') * height_items[i] );
+        var new_width = Math.ceil( jQuery(this).data('original-width') / jQuery(this).data('original-height') * height_items[i] );
 
         cache_width += (new_width+4);
         
@@ -802,14 +802,14 @@ function horizontal_layout(container){
           new_width -= ( cache_width - container_width );
         }
 
-        $(this).find('.otw_blog_manager-blog-media-wrapper').css( {'width': new_width + 'px', 'height': parseInt(height_items[i]) });
+        jQuery(this).find('.otw_blog_manager-blog-media-wrapper').css( {'width': new_width + 'px', 'height': parseInt(height_items[i]) });
 
       });
     }
 
     if( $this.find('.otw_blog_manager-blog-item-holder').children('.otw_blog_manager-horizontal-item[data-row="'+ row +'"]').length > 0 ){
       $this.find('.otw_blog_manager-blog-item-holder').children('.otw_blog_manager-horizontal-item[data-row="'+ row +'"]').each(function(){
-        $(this).find('.otw_blog_manager-blog-media-wrapper').css({'width': $(this).data('original-width') + 'px', 'height': $(this).data('original-height') });
+        jQuery(this).find('.otw_blog_manager-blog-media-wrapper').css({'width': jQuery(this).data('original-width') + 'px', 'height': jQuery(this).data('original-height') });
       });
 
       $this.find('.otw_blog_manager-blog-item-holder').children('.otw_blog_manager-horizontal-item[data-row="'+ row +'"]:last-child').css({'margin-right': '0px'});
@@ -822,15 +822,15 @@ function horizontal_layout(container){
 //Social shares
 function otw_social_shares(){  
 
-  $('.otw_blog_manager-social-share-buttons-wrapper').each(function(){
+  jQuery('.otw_blog_manager-social-share-buttons-wrapper').each(function(){
 
-    var $this = $(this);
-        title = $(this).data('title'),
-        description = $(this).data('description'),
-        image = $(this).data('image'),
-        postUrl = $(this).data('url');
+    var $this = jQuery(this);
+        title = jQuery(this).data('title'),
+        description = jQuery(this).data('description'),
+        image = jQuery(this).data('image'),
+        postUrl = jQuery(this).data('url');
 
-    $.ajax({
+    jQuery.ajax({
       type: 'POST',
       url: socialShareURL,
       dataType: 'json',
@@ -839,21 +839,21 @@ function otw_social_shares(){
       success: function(data) {
         if(data.info !== 'error'){
           $this.find('.otw_blog-manager-social-share').each(function(){
-            if($(this).hasClass('otw-facebook')){
-              $(this).append('<span class="data-shares">'+ data.facebook +'</span>');
-              // $(this).attr({'href': 'http://www.facebook.com/sharer.php?u='+ postUrl});
-            } else if($(this).hasClass('otw-twitter')){
-              $(this).append('<span class="data-shares">'+ data.twitter +'</span>');
-              // $(this).attr({'href': 'https://twitter.com/intent/tweet?source=tweetbutton&text='+ escape(title) +'&url='+ encodeURIComponent(postUrl)});
-            } else if($(this).hasClass('otw-google_plus')){
-              $(this).append('<span class="data-shares">'+ data.google_plus +'</span>');
-              // $(this).attr({'href': 'https://plus.google.com/share?url='+ postUrl});
-            } else if($(this).hasClass('otw-linkedin')){
-              $(this).append('<span class="data-shares">'+ data.linkedin +'</span>');
-              // $(this).attr({'href': 'http://www.linkedin.com/shareArticle?mini=true&url='+ encodeURIComponent(postUrl) +'&title='+ escape(title) +'&summary='+ escape(description)});
-            } else if($(this).hasClass('otw-pinterest')){
-              $(this).append('<span class="data-shares">'+ data.pinterest +'</span>');
-              // $(this).attr({'href': 'http://pinterest.com/pin/create/button/?url='+ encodeURIComponent(postUrl) +'&media='+ encodeURIComponent(image) +'&description='+ escape(description)});
+            if(jQuery(this).hasClass('otw-facebook')){
+              jQuery(this).append('<span class="data-shares">'+ data.facebook +'</span>');
+              // jQuery(this).attr({'href': 'http://www.facebook.com/sharer.php?u='+ postUrl});
+            } else if(jQuery(this).hasClass('otw-twitter')){
+              jQuery(this).append('<span class="data-shares">'+ data.twitter +'</span>');
+              // jQuery(this).attr({'href': 'https://twitter.com/intent/tweet?source=tweetbutton&text='+ escape(title) +'&url='+ encodeURIComponent(postUrl)});
+            } else if(jQuery(this).hasClass('otw-google_plus')){
+              jQuery(this).append('<span class="data-shares">'+ data.google_plus +'</span>');
+              // jQuery(this).attr({'href': 'https://plus.google.com/share?url='+ postUrl});
+            } else if(jQuery(this).hasClass('otw-linkedin')){
+              jQuery(this).append('<span class="data-shares">'+ data.linkedin +'</span>');
+              // jQuery(this).attr({'href': 'http://www.linkedin.com/shareArticle?mini=true&url='+ encodeURIComponent(postUrl) +'&title='+ escape(title) +'&summary='+ escape(description)});
+            } else if(jQuery(this).hasClass('otw-pinterest')){
+              jQuery(this).append('<span class="data-shares">'+ data.pinterest +'</span>');
+              // jQuery(this).attr({'href': 'http://pinterest.com/pin/create/button/?url='+ encodeURIComponent(postUrl) +'&media='+ encodeURIComponent(image) +'&description='+ escape(description)});
             }
           });
         }
@@ -862,26 +862,26 @@ function otw_social_shares(){
 
   });
 
-  $('.otw_blog_manager-social-wrapper').each(function(){
-    var $this = $(this);
-        title = $(this).data('title'),
-        description = $(this).data('description'),
-        image = $(this).data('image'),
-        url = $(this).data('url');
+  jQuery('.otw_blog_manager-social-wrapper').each(function(){
+    var $this = jQuery(this);
+        title = jQuery(this).data('title'),
+        description = jQuery(this).data('description'),
+        image = jQuery(this).data('image'),
+        url = jQuery(this).data('url');
 
         
 
-    $(this).children('.otw_blog_manager-social-item').each(function(){
-      if($(this).hasClass('otw-facebook')){
-        $(this).attr({'href': 'http://www.facebook.com/sharer.php?u='+ url});
-      } else if($(this).hasClass('otw-twitter')){
-        $(this).attr({'href': 'https://twitter.com/intent/tweet?source=tweetbutton&url='+ encodeURIComponent(url) +'&text='+ escape(title)});
-      } else if($(this).hasClass('otw-google_plus')){
-        $(this).attr({'href': 'https://plus.google.com/share?url='+ url});
-      } else if($(this).hasClass('otw-linkedin')){
-        $(this).attr({'href': 'http://www.linkedin.com/shareArticle?mini=true&url='+ encodeURIComponent(url) +'&title='+ escape(title) +'&summary='+ escape(description)});
-      } else if($(this).hasClass('otw-pinterest')){
-        $(this).attr({'href': 'http://pinterest.com/pin/create/button/?url='+ encodeURIComponent(url) +'&media='+ encodeURIComponent(image) +'&description='+ escape(description)});
+    jQuery(this).children('.otw_blog_manager-social-item').each(function(){
+      if(jQuery(this).hasClass('otw-facebook')){
+        jQuery(this).attr({'href': 'http://www.facebook.com/sharer.php?u='+ url});
+      } else if(jQuery(this).hasClass('otw-twitter')){
+        jQuery(this).attr({'href': 'https://twitter.com/intent/tweet?source=tweetbutton&url='+ encodeURIComponent(url) +'&text='+ escape(title)});
+      } else if(jQuery(this).hasClass('otw-google_plus')){
+        jQuery(this).attr({'href': 'https://plus.google.com/share?url='+ url});
+      } else if(jQuery(this).hasClass('otw-linkedin')){
+        jQuery(this).attr({'href': 'http://www.linkedin.com/shareArticle?mini=true&url='+ encodeURIComponent(url) +'&title='+ escape(title) +'&summary='+ escape(description)});
+      } else if(jQuery(this).hasClass('otw-pinterest')){
+        jQuery(this).attr({'href': 'http://pinterest.com/pin/create/button/?url='+ encodeURIComponent(url) +'&media='+ encodeURIComponent(image) +'&description='+ escape(description)});
       }
     });
   });
@@ -894,7 +894,7 @@ function otw_social_shares(){
 function update_social_stuff() {
   //Twitter
   
-  $.getScript("http://platform.twitter.com/widgets.js");  
+  jQuery.getScript("http://platform.twitter.com/widgets.js");  
   
   // G+
   (function() {
@@ -905,5 +905,5 @@ function update_social_stuff() {
 }
 
 function otw_responsive_videos() {
-  $('.otw_blog_manager-blog-media-wrapper').fitVids({ customSelector: "iframe[src*='soundcloud.com']"});
+  jQuery('.otw_blog_manager-blog-media-wrapper').fitVids({ customSelector: "iframe[src*='soundcloud.com']"});
 }

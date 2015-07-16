@@ -1,6 +1,6 @@
 var $ =  jQuery.noConflict(); //Wordpress by default uses jQuery instead of $
 
-$(document).ready(function(){
+jQuery(document).ready(function(){
 	var frameUpload; // WP Media holder;
 	/**
 	 * Init Blog Items ( Title, Description, Media, Meta, Continue Reading )
@@ -12,14 +12,14 @@ $(document).ready(function(){
 	var $messages = JSON.parse( messages );
 
 	// Disable caching of AJAX responses - DEVELOPMENT ONLY
-	$.ajaxSetup ({
+	jQuery.ajaxSetup ({
 	    cache: false
 	});
 
 	/**
 	 * Enable jQuery UI Accordion for Add List Page
 	 */
-	$( '.accordion-container' ).accordion({
+	jQuery( '.accordion-container' ).accordion({
 		header: "> ul > li > h3",
 		collapsible: true,
 		heightStyle: 'content',
@@ -30,24 +30,24 @@ $(document).ready(function(){
 	 * Enable Color Picker
 	 */
 	$element = new Array();
-	$('.js-color-picker').each( function(index, element) {
+	jQuery('.js-color-picker').each( function(index, element) {
 		$element[index] = element;
 
-		$($element[index]).ColorPicker({
+		jQuery($element[index]).ColorPicker({
 			color: '#000000',
 				onShow: function (colpkr) {
-					$(colpkr).fadeIn(500);
+					jQuery(colpkr).fadeIn(500);
 					return false;
 				},
 				onHide: function (colpkr) {
-					$(colpkr).fadeOut(500);
-					// $($colr).next( 'input').change();
+					jQuery(colpkr).fadeOut(500);
+					// jQuery($colr).next( 'input').change();
 					return false;
 				},
 				onChange: function (hsb, hex, rgb) {
 					
-					$( $element[index] ).parent().children('.js-color-picker-value').val( '#'+hex );
-					$( $element[index] ).children('.js-color-container').css( 'backgroundColor', '#'+hex );
+					jQuery( $element[index] ).parent().children('.js-color-picker-value').val( '#'+hex );
+					jQuery( $element[index] ).children('.js-color-container').css( 'backgroundColor', '#'+hex );
 					
 				}
 			});	
@@ -57,32 +57,32 @@ $(document).ready(function(){
 	/**
 	 * Autocomplete Functionality for: Categories, Tags and Users (Authors)
 	 */
-	$('.js-categories').select2({
+	jQuery('.js-categories').select2({
 		allowClear 	: true,
 		multiple 	: true,
 		data 		: JSON.parse( categories )
 	});
 
-	$('.js-tags').select2({
+	jQuery('.js-tags').select2({
 		allowClear 	: true,
 		multiple 	: true,
 		data 		: JSON.parse( tags )
 	});
 
-	$('.js-users').select2({
+	jQuery('.js-users').select2({
 		allowClear 	: true,
 		multiple 	: true,
 		data 		: JSON.parse( users )
 	});
 
-	$('.js-pages').select2({
+	jQuery('.js-pages').select2({
 		allowClear 	: true,
 		multiple 	: false,
 		data 		: JSON.parse( pages ),
 		placeholder: 'Page Name'
 	});
 
-	$('.js-fonts').select2({
+	jQuery('.js-fonts').select2({
 		allowClear 	: true,
 		multiple 	: false,
 		data 		: JSON.parse( fonts ),
@@ -94,84 +94,84 @@ $(document).ready(function(){
 	 * Select All Funcitonality
 	 */
 
-	$('.js-select-categories, .js-select-tags, .js-select-users').on('change', function(e) {
-		var sectionName = $(this).data('section');
+	jQuery('.js-select-categories, .js-select-tags, .js-select-users').on('change', function(e) {
+		var sectionName = jQuery(this).data('section');
 
-		if( $(this).is(':checked') ) {
+		if( jQuery(this).is(':checked') ) {
 
 			var itemsID = [];
-			$.each( JSON.parse( eval(sectionName)) , function(index, value) {
+			jQuery.each( JSON.parse( eval(sectionName)) , function(index, value) {
 				itemsID.push( value.id );
 			});
 
-			$('.js-'+sectionName+'-select').val(itemsID);
-			$('.js-'+sectionName+'-counter').html( itemsID.length );
-			$('.js-'+sectionName+'-count').show();
-			$('.js-'+sectionName+'').select2("enable", false);
+			jQuery('.js-'+sectionName+'-select').val(itemsID);
+			jQuery('.js-'+sectionName+'-counter').html( itemsID.length );
+			jQuery('.js-'+sectionName+'-count').show();
+			jQuery('.js-'+sectionName+'').select2("enable", false);
 
 		} else {
-			$('.js-'+sectionName+'-select').val( '' );
-			$('.js-'+sectionName+'-counter').html( '' );
-			$('.js-'+sectionName+'-count').hide();
-			$('.js-'+sectionName+'').select2("enable", true);
+			jQuery('.js-'+sectionName+'-select').val( '' );
+			jQuery('.js-'+sectionName+'-counter').html( '' );
+			jQuery('.js-'+sectionName+'-count').hide();
+			jQuery('.js-'+sectionName+'').select2("enable", true);
 		}
 
 	});
 	
 	
-	if( $('.js-template-style').size() && $('.js-template-style').val() ){
+	if( jQuery('.js-template-style').size() && jQuery('.js-template-style').val() ){
 	
-		var js_templ_val = $('.js-template-style').val();
+		var js_templ_val = jQuery('.js-template-style').val();
 		if( typeof( js_template_options[ js_templ_val ] ) == 'object' ){
-			$( '.default_thumb_width' ).html( js_template_options[ js_templ_val ].width );
-			$( '.default_thumb_height' ).html( js_template_options[ js_templ_val ].height );
+			jQuery( '.default_thumb_width' ).html( js_template_options[ js_templ_val ].width );
+			jQuery( '.default_thumb_height' ).html( js_template_options[ js_templ_val ].height );
 		}else{
-			$( '.default_thumb_width' ).html( '' );
-			$( '.default_thumb_height' ).html( '' );
+			jQuery( '.default_thumb_width' ).html( '' );
+			jQuery( '.default_thumb_height' ).html( '' );
 		}
 	}
 	/**
 	 * Load Front End preview based on selection
 	 */
 	 
-	$('.js-template-style').on('change', function(e){
+	jQuery('.js-template-style').on('change', function(e){
 		
 		// Get Current Page Selection
-		var pageName = $(this).val();
+		var pageName = jQuery(this).val();
 
 		// Evaluate page selection and load preview
 		// Variable templates can be found in otw-admin-bm-variables.js
-		$.each( templates, function( index, obj) {
+		jQuery.each( templates, function( index, obj) {
 			
 			if ( obj.name == pageName ) {
 				// Preview is disabled.
-				//$('.js-preview').load( frontendURL + obj.url );		
+				//jQuery('.js-preview').load( frontendURL + obj.url );		
 			}
 			
 		});
 		
 		if( typeof( js_template_options[ this.value ] ) == 'object' ){
 		
-			$( '.default_thumb_width' ).html( js_template_options[ this.value ].width );
-			$( '.default_thumb_height' ).html( js_template_options[ this.value ].height );
+			jQuery( '.default_thumb_width' ).html( js_template_options[ this.value ].width );
+			jQuery( '.default_thumb_height' ).html( js_template_options[ this.value ].height );
 		}else{
-			$( '.default_thumb_width' ).html( '' );
-			$( '.default_thumb_height' ).html( '' );
+			jQuery( '.default_thumb_width' ).html( '' );
+			jQuery( '.default_thumb_height' ).html( '' );
 		}
 		
-		$('.js-mosaic-settings').hide();
-		$('.js-slider-settings').hide();
-		$('.js-news-settings').hide();
-		$('.js-horizontal-settings').hide();
+		jQuery('.js-mosaic-settings').hide();
+		jQuery('.js-slider-settings').hide();
+		jQuery('.js-news-settings').hide();
+		jQuery('.js-horizontal-settings').hide();
 
 		// Add Mosaic Specific Settings to the page
 		if( pageName == '1-3-mosaic' || pageName == '1-4-mosaic' ) {
 			// Show Mosaic Specific Settings
-			$('.js-mosaic-settings').show();
+			jQuery('.js-mosaic-settings').show();
 
 		} else if ( pageName == '2-column-news' || pageName == '3-column-news' || pageName == '4-column-news' ) {
 			// Show News Specific Settings
-			$('.js-news-settings').show();
+			jQuery('.js-news-settings').show();
 
 		} else if (
 				pageName == 'slider' ||
@@ -183,47 +183,47 @@ $(document).ready(function(){
 				pageName == '4-column-carousel-wid'
 			) {
 			// Show Slider / Carousel Specific Settings
-			$('.js-slider-settings').show();
+			jQuery('.js-slider-settings').show();
 
 		} else if ( pageName == 'horizontal-layout' ) {
-			$('.js-horizontal-settings').show();
+			jQuery('.js-horizontal-settings').show();
 		}
 
 	});
 
 	/*
-	$('.js-template-style').otwpreview();
+	jQuery('.js-template-style').otwpreview();
 	*/
 	
 	/**
 	 * POST and PAGES custom Meta BOX media selection
 	 */
 
-	$('.js-otw-media-type').on('change', function(e) {
+	jQuery('.js-otw-media-type').on('change', function(e) {
 		
-		var mediaType = $(this).val();
+		var mediaType = jQuery(this).val();
 
-		$('.js-meta-youtube').hide();
-		$('.js-meta-vimeo').hide();
-		$('.js-meta-soundcloud').hide();
-		$('.js-meta-image').hide();
-		$('.js-meta-slider').hide();
+		jQuery('.js-meta-youtube').hide();
+		jQuery('.js-meta-vimeo').hide();
+		jQuery('.js-meta-soundcloud').hide();
+		jQuery('.js-meta-image').hide();
+		jQuery('.js-meta-slider').hide();
 
 		switch ( mediaType ) {
 			case 'youtube':
-				$('.js-meta-youtube').show();
+				jQuery('.js-meta-youtube').show();
 			break;
 			case 'vimeo':
-				$('.js-meta-vimeo').show();
+				jQuery('.js-meta-vimeo').show();
 			break;
 			case 'soundcloud':
-				$('.js-meta-soundcloud').show();
+				jQuery('.js-meta-soundcloud').show();
 			break;
 			case 'img':
-				$('.js-meta-image').show();
+				jQuery('.js-meta-image').show();
 			break;
 			case 'slider':
-				$('.js-meta-slider').show();
+				jQuery('.js-meta-slider').show();
 			break;
 		}
 
@@ -232,7 +232,7 @@ $(document).ready(function(){
 	/**
 	 * Make Slider Elements Sortable
 	 */
-	$('.js-meta-slider-preview').sortable({
+	jQuery('.js-meta-slider-preview').sortable({
 		update: function( event, ui ) {
 			updateSliderAssets();
 		}
@@ -242,14 +242,14 @@ $(document).ready(function(){
 	 * Add functionality to delete images from slider
 	 */
 
-	$(document).on('click', '.b-delete_btn', function(e) {
+	jQuery(document).on('click', '.b-delete_btn', function(e) {
 		e.preventDefault();
 		
 		// Get current selected item
-		item = $(this).parent();
+		item = jQuery(this).parent();
 
 		//Remove item from the list
-		$(item).remove();
+		jQuery(item).remove();
 
 		// Update assets list
 		updateSliderAssets ();
@@ -258,7 +258,7 @@ $(document).ready(function(){
 	/**
 	 * Add Functionality for WordPress Media Upload
 	 */
-	$(document).on('click', '.js-add-image', function(e) {
+	jQuery(document).on('click', '.js-add-image', function(e) {
 		e.preventDefault();
 		/**
 		 * WordPress Based Media Selection and Upload (Images)
@@ -292,24 +292,24 @@ $(document).ready(function(){
 			var attachements = frameUpload.state().get('selection').first().id;
 			var attachementURL = wp.media.attachment( attachements ).attributes.url;
 
-			if( $('.js-otw-media-type').val() === 'slider' ) {
+			if( jQuery('.js-otw-media-type').val() === 'slider' ) {
 
 				imgTAG = '<li class="b-slider__item" data-src="'+attachementURL+'">';
 				imgTAG += '<a href="#" class="b-delete_btn"></a>';
 				imgTAG += '<img src="'+attachementURL+'" width="100" />';
 				imgTAG += '</li>';
 				
-				$('.js-meta-slider-preview').append( imgTAG ); //Display IMG
+				jQuery('.js-meta-slider-preview').append( imgTAG ); //Display IMG
 				updateSliderAssets();
 
 			} else {
 				// Create HTML for visual effect
 				var imgTAG = '<img src="'+attachementURL+'" width="150" />';
 				// Append HTML for visual preview
-				$('.js-img-preview').html( imgTAG ); //Display IMG
+				jQuery('.js-img-preview').html( imgTAG ); //Display IMG
 
 				// Add Image to Hidden input - save to DB
-				$('.js-img-url').val( attachementURL );
+				jQuery('.js-img-url').val( attachementURL );
 			}
 
 		})
@@ -322,7 +322,7 @@ $(document).ready(function(){
 	 * Capture All Links from Preview and Prevent Default
 	 * Prevent Browser to follow # link
 	 */
-	$('.js-preview').on('click', 'a', function(e) {
+	jQuery('.js-preview').on('click', 'a', function(e) {
 		e.preventDefault();
 	});
 
@@ -330,13 +330,13 @@ $(document).ready(function(){
 	 * Interface for Meta Elements
 	 * Drag & Drop support + Sortable Support
 	 */
-	$('.js-meta-active, .js-meta-inactive').sortable({
+	jQuery('.js-meta-active, .js-meta-inactive').sortable({
 		connectWith: ".b-meta-box",
 		update: function( event, ui ) {
 			updateBlogMetaElements();
 		},
 		stop: function( event, ui ) {
-			$.event.trigger({
+			jQuery.event.trigger({
 				type: "metaEvent"
 			});
 		}
@@ -346,13 +346,13 @@ $(document).ready(function(){
 	 * Interface for Blog List Elements
 	 * Drag & Drop support + Sortable Support
 	 */
-	$('.js-bl-active, .js-bl-inactive').sortable({
+	jQuery('.js-bl-active, .js-bl-inactive').sortable({
 		connectWith: ".b-bl-box",
 		update: function( event, ui ) {
 			updateBlogListElements();
 		},
 		stop: function( event, ui ) {
-			$.event.trigger({
+			jQuery.event.trigger({
 				type: "listEvent"
 			});
 		}
@@ -361,30 +361,30 @@ $(document).ready(function(){
 	/**
 	 * Detect Delete action and prompt message
 	 */
-	 $('.js-delete-item').on('click', function(e) {
+	 jQuery('.js-delete-item').on('click', function(e) {
 	 	e.preventDefault();
 
-	 	confirmation =  window.confirm( $messages.delete_confirm + ' ' + $(this).data('name') + '?' );
+	 	confirmation =  window.confirm( $messages.delete_confirm + ' ' + jQuery(this).data('name') + '?' );
 
 	 	if( confirmation ) {
-	 		window.location = $(this).attr('href');
+	 		window.location = jQuery(this).attr('href');
 	 	}
 
 	 });
 	 
-	$('#white_spaces').change( function(){
+	jQuery('#white_spaces').change( function(){
 		
 		if( this.value == 'no' ){
-			$( '#white_spaces_color_container' ).hide();
+			jQuery( '#white_spaces_color_container' ).hide();
 		}else{
-			$( '#white_spaces_color_container' ).show();
+			jQuery( '#white_spaces_color_container' ).show();
 		}
 	 } );
 	 
-	if( $('#white_spaces').val() == 'no' ){
-		$( '#white_spaces_color_container' ).hide();
+	if( jQuery('#white_spaces').val() == 'no' ){
+		jQuery( '#white_spaces_color_container' ).hide();
 	}else{
-		$( '#white_spaces_color_container' ).show();
+		jQuery( '#white_spaces_color_container' ).show();
 	}
 
 });
@@ -395,12 +395,12 @@ $(document).ready(function(){
  */
 function updateSliderAssets () {
 	var imagesArray = new Array();
-	$('.b-slider-preview > .b-slider__item').each(function( item, value) {
-		imagesArray.push( $(value).data('src') );
+	jQuery('.b-slider-preview > .b-slider__item').each(function( item, value) {
+		imagesArray.push( jQuery(value).data('src') );
 	});
 
 	// Add Array to hidden input
-	$('.js-img-slider-url').val( imagesArray );
+	jQuery('.js-img-slider-url').val( imagesArray );
 }
 
 /**
@@ -411,11 +411,11 @@ function updateSliderAssets () {
 function updateBlogListElements () {
 	var elementsArray = new Array();
 
-	$('.js-bl-active > .js-bl--item').each( function( item, value )  {
-		elementsArray.push( $(value).data('value') );
+	jQuery('.js-bl-active > .js-bl--item').each( function( item, value )  {
+		elementsArray.push( jQuery(value).data('value') );
 	});
 
-	$('.js-blog-items').val( elementsArray );
+	jQuery('.js-blog-items').val( elementsArray );
 }
 
 /**
@@ -426,11 +426,11 @@ function updateBlogListElements () {
 function updateBlogMetaElements () {
 	var elementsArray = new Array();
 
-	$('.js-meta-active > .js-meta--item').each( function( item, value )  {
-		elementsArray.push( $(value).data('value') );
+	jQuery('.js-meta-active > .js-meta--item').each( function( item, value )  {
+		elementsArray.push( jQuery(value).data('value') );
 	});
 
-	$('.js-meta-items').val( elementsArray );
+	jQuery('.js-meta-items').val( elementsArray );
 }
 
 
@@ -439,18 +439,18 @@ function updateBlogMetaElements () {
  * Modify interface based on current input Edit / Add Error
  */
 function setupBlogElements () {
-	blogElements = $('.js-blog-items').val();
-	metaElements = $('.js-meta-items').val();
+	blogElements = jQuery('.js-blog-items').val();
+	metaElements = jQuery('.js-meta-items').val();
 	
 	if( typeof blogElements !== 'undefined' ) {
 		blogItems = blogElements.split(',');
 
-		$(blogItems).each( function( item, value ) {
+		jQuery(blogItems).each( function( item, value ) {
 			
-			$('.js-bl-inactive > .js-bl--item').each( function( blItem, blValue )  {
-				if( $(blValue).data('value') == value ) {
+			jQuery('.js-bl-inactive > .js-bl--item').each( function( blItem, blValue )  {
+				if( jQuery(blValue).data('value') == value ) {
 
-					$('.js-bl-active').append( $(blValue) );
+					jQuery('.js-bl-active').append( jQuery(blValue) );
 				} 
 			});
 

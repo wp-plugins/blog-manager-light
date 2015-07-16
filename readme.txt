@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: manage posts, blog, post list, responsive, blog 1 column, blog 4 columns, blog archive, blog widget style, shortcode, newspapper, timeline, slider, carousel
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,10 @@ Please refer to [online documentation page](http://otwthemes.com/online-document
 
 
 == Changelog ==
+= 1.2 =
+
+* Fixed: some jquery fixes
+
 = 1.1 =
 
 * Updated: remove unused code
