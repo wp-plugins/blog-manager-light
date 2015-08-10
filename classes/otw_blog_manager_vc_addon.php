@@ -49,7 +49,7 @@ class OTWBMLVCExtendAddonClass{
 				"base" => "otw_bm_vc",
 				"class" => "",
 				"controls" => "full",
-				"icon" => WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'assets'. DS .'img'. DS .'menu_icon.png', // or css class name which you can reffer in your css file later. Example: "vc_extend_my_class"
+				"icon" => plugins_url() . DS . OTW_BML_PATH . DS .'assets'. DS .'img'. DS .'menu_icon.png', // or css class name which you can reffer in your css file later. Example: "vc_extend_my_class"
 				"category" => __('Blog Manager', 'otw_bml'),
 				"params" => array(
 					array(

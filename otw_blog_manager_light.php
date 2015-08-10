@@ -4,7 +4,7 @@
  * Plugin URI: http://OTWthemes.com 
  * Description: Blog Manager for WordPress adds tons of blog functionality to your WordPress based website.
  * Author: OTWthemes.com
- * Version: 1.2
+ * Version: 1.3
  * Author URI: http://themeforest.net/user/OTWthemes
  */
 
@@ -33,7 +33,7 @@
 	
 	$upload_dir = wp_upload_dir();
 	
-	define( 'SKIN_BML_URL', $upload_dir['baseurl'].DS.'otwbm'.DS.'skins'.DS );
+	define( 'SKIN_BML_URL', set_url_scheme( $upload_dir['baseurl'] ).DS.'otwbm'.DS.'skins'.DS );
 	define( 'SKIN_BML_PATH', $upload_dir['basedir'].DS.'otwbm'.DS.'skins'.DS );
 	define( 'UPLOAD_BML_PATH', $upload_dir['basedir'].DS );
 	
@@ -141,7 +141,7 @@ class OTWBlogManagerLight {
       'manage_options', 
       'otw-bml', 
       array( $this , 'bml_list' ),
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'assets'. DS .'img'. DS .'menu_icon.png' 
+      plugins_url() . DS . OTW_BML_PATH . DS .'assets'. DS .'img'. DS .'menu_icon.png' 
     );
 
     add_submenu_page( 
@@ -240,24 +240,24 @@ public function load_resources(){
     
     wp_register_script( 
       'otw-admin-colorpicker', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'plugins'.DS.'colorpicker.js', array('jquery') 
+      plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'plugins'.DS.'colorpicker.js', array('jquery') 
     );
     wp_register_script( 
       'otw-admin-select2', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'plugins'.DS.'select2.js', array('jquery') 
+      plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'plugins'.DS.'select2.js', array('jquery') 
     );
 
     wp_register_script( 
       'otw-admin-variables', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'otw-admin-bm-variables.js'
+      plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'otw-admin-bm-variables.js'
     );
     wp_register_script( 
       'otw-admin-functions', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'otw-admin-bm-functions.js'
+      plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'otw-admin-bm-functions.js'
     );
     wp_register_script( 
       'otw-admin-fonts', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'fonts.js'
+      plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'js'.DS.'fonts.js'
     );
 
     // Custom Scripts + Plugins
@@ -282,14 +282,14 @@ public function load_resources(){
     wp_localize_script( 'otw-admin-functions', 'pages', json_encode( $pagesData ) );
     wp_localize_script( 'otw-admin-functions', 'messages', json_encode( $messages ) );
 
-    wp_localize_script( 'otw-admin-functions', 'frontendURL', WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'frontend/' );
+    wp_localize_script( 'otw-admin-functions', 'frontendURL', plugins_url() . DS . OTW_BML_PATH . DS . 'frontend/' );
 
     wp_register_style( 
       'otw-admin-color-picker', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'css'.DS.'colorpicker.css' 
+      plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'css'.DS.'colorpicker.css' 
     );
-    wp_register_style( 'otw-admin-bm-default', WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'css'.DS.'otw-blog-list-default.css' );
-    wp_register_style( 'otw-admin-bm-select2', WP_PLUGIN_URL . DS . OTW_BML_PATH . DS . 'assets'.DS.'css'.DS.'select2.css' );
+    wp_register_style( 'otw-admin-bm-default', plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'css'.DS.'otw-blog-list-default.css' );
+    wp_register_style( 'otw-admin-bm-select2', plugins_url() . DS . OTW_BML_PATH . DS . 'assets'.DS.'css'.DS.'select2.css' );
 
     wp_enqueue_style( 'otw-admin-color-picker' );
     wp_enqueue_style( 'otw-admin-bm-default' );
@@ -791,27 +791,27 @@ public function load_resources(){
 
     wp_register_script( 
       'otw-bm-flexslider', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'jquery.flexslider.min.js', 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'jquery.flexslider.min.js', 
       array( 'jquery' )
     );
     wp_register_script( 
       'otw-bm-infinitescroll', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'jquery.infinitescroll.min.js', 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'jquery.infinitescroll.min.js', 
       array( 'jquery' )
     );
     wp_register_script( 
       'otw-bm-pixastic', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'pixastic.custom.min.js', 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'pixastic.custom.min.js', 
       array( 'jquery' )
     );
     wp_register_script( 
       'otw-bm-fitvid',
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'jquery.fitvids.js', 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'jquery.fitvids.js', 
       array( 'jquery' )
     );
     wp_register_script( 
       'otw-bm-main-script', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'script.js', 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'js'. DS .'script.js', 
       array( 'jquery' ), '', true
     );
 
@@ -826,19 +826,19 @@ public function load_resources(){
 
     wp_register_style( 
       'otw-bm-default', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'default.css' 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'default.css' 
     );
     wp_register_style( 
       'otw-bm-font-awesome', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'font-awesome.min.css' 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'font-awesome.min.css' 
     );
     wp_register_style( 
       'otw-bm-bm', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'otw-blog-manager.css' 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'otw-blog-manager.css' 
     );
     wp_register_style( 
       'otw-bm-grid', 
-      WP_PLUGIN_URL . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'otw-grid.css' 
+      plugins_url() . DS . OTW_BML_PATH . DS .'frontend'. DS .'css'. DS .'otw-grid.css' 
     );
     wp_register_style( 
       'otw-bm-custom', 

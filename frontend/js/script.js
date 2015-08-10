@@ -193,7 +193,7 @@ jQuery(document).ready(function(){
       loading: {
           finishedMsg: 'No More Posts Found',
           msgText: 'Loading posts...',
-          img: 'http://i.imgur.com/o4Qsgvx.gif'
+          img: '//i.imgur.com/o4Qsgvx.gif'
         }
       },
       //call horizontal layout as a callback
@@ -215,7 +215,7 @@ jQuery(document).ready(function(){
       loading: {
           finishedMsg: 'No More Posts Found',
           msgText: 'Loading posts...',
-          img: 'http://i.imgur.com/o4Qsgvx.gif'
+          img: '//i.imgur.com/o4Qsgvx.gif'
         }
       },
       //call Isotope as a callback
@@ -260,7 +260,7 @@ jQuery(document).ready(function(){
       loading: {
           finishedMsg: 'No More Posts Found',
           msgText: 'Loading posts...',
-          img: 'http://i.imgur.com/o4Qsgvx.gif'
+          img: '//i.imgur.com/o4Qsgvx.gif'
         }
       },
 
@@ -285,7 +285,7 @@ jQuery(document).ready(function(){
       loading: {
           finishedMsg: 'No More Posts Found',
           msgText: 'Loading posts...',
-          img: 'http://i.imgur.com/o4Qsgvx.gif'
+          img: '//i.imgur.com/o4Qsgvx.gif'
         }
       },
       //callback
@@ -894,7 +894,7 @@ function otw_social_shares(){
 function update_social_stuff() {
   //Twitter
   
-  jQuery.getScript("http://platform.twitter.com/widgets.js");  
+  jQuery.getScript("//platform.twitter.com/widgets.js");  
   
   // G+
   (function() {

@@ -76,7 +76,7 @@ class OTWBMLImageCrop {
 	
 	global $otw_bm_image_object, $otw_bm_image_profile;
 	
-	return $otw_bm_image_object->resize( $otw_bm_image_profile, $imgData, $resizeWidth, $resizeHeight, $crop , false, $white_spaces, $background );
+	return set_url_scheme( $otw_bm_image_object->resize( $otw_bm_image_profile, $imgData, $resizeWidth, $resizeHeight, $crop , false, $white_spaces, $background ) );
   } 
   
   public function embed_resize( $html, $resizeWidth, $resizeHeight, $crop = false ){
