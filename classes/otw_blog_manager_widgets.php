@@ -8,9 +8,9 @@ class OTWBML_Widget extends WP_Widget {
 	private $otwDispatcher = null;
 	private $otwCSS = null;
 	// Contructor 
-	function OTWBML_Widget () {
+	public function __construct() {
 
-		parent::WP_Widget(
+		parent::__construct(
 			'otw_bm_widget_items', 
 			'OTW Blog Manager Widget', 
 			array(
