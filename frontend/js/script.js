@@ -435,7 +435,7 @@ jQuery(document).ready(function(){
   timeline_layout_fixer();
 
   /* Input & Textarea Placeholder */
-  jQuery('input[type="text"], textarea').each(function(){
+/*  jQuery('input[type="text"], textarea').each(function(){
     jQuery(this).attr({'data-value': jQuery(this).attr('placeholder')});
     jQuery(this).removeAttr('placeholder');
     jQuery(this).attr({'value': jQuery(this).attr('data-value')});
@@ -451,7 +451,7 @@ jQuery(document).ready(function(){
       jQuery(this).val(jQuery(this).attr('data-value'));
     }
   });
-
+*/
   //IE8 hover fixer
   jQuery('.hover-style-14-desaturate a, .hover-style-16-orton a').on('mouseenter', function(){
     jQuery(this).find('.otw_blog_manager-hover-img').css({'opacity': '0'});
