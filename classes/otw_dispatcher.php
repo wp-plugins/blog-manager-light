@@ -78,7 +78,7 @@ class OTWDispatcher {
     $outputHtml = '<div class="otw-row">'. $outputHtml . '</div>';
     // Hack to solve some idiotic themes that use remove_filters for wpautop
     if( !has_filter( 'the_content', 'wpautop' ) && !$ajax && !$bm_options['widget']) {
-      return '[raw]'.$outputHtml.'[/raw]';
+      return apply_filters('idiotic-wpautop','[raw]'.$outputHtml.'[/raw]',$outputHtml);
     } else {
       return $outputHtml; 
     }
